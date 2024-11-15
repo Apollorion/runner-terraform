@@ -31,6 +31,8 @@ RUN chmod 755 /bin/terragrunt
 RUN echo "hosts: files dns" > /etc/nsswitch.conf \
     && adduser --disabled-password --uid=1983 spacelift
 
+RUN chmod +s $(which apk)
+
 FROM base AS aws
 
 COPY --from=ghcr.io/spacelift-io/aws-cli-alpine /usr/local/aws-cli/ /usr/local/aws-cli/
